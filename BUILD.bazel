@@ -1,0 +1,10 @@
+load("@buildifier_prebuilt//:rules.bzl", "buildifier_test")
+
+buildifier_test(
+    name = "buildifier",
+    srcs = glob([
+        "**/*.bazel",
+        "**/*.bzl",
+    ]),
+    lint_mode = "warn",
+)

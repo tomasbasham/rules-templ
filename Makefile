@@ -20,12 +20,17 @@ help:
 	@echo "Usage: make <target>"
 	@echo
 	@echo "Targets:"
-	@echo "  all   Build and test the project (default)"
-	@echo "  test  Run tests"
-	@echo "  clean Clean the project"
+	@echo "  all        Build and test the project (default)"
+	@echo "  buildifier Run buildifier to format Bazel files"
+	@echo "  test       Run tests"
+	@echo "  clean      Clean the project"
+
+.PHONY: buildifier
+buildifier:
+	$(BAZEL) run //:buildifier
 
 .PHONY: test
-test:
+test: buildifier
 	$(BAZEL) test //...
 
 .PHONY: clean

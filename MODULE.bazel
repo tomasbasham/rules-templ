@@ -2,3 +2,5 @@ module(
     name = "rules_templ",
     version = "0.1.0",
 )
+
+bazel_dep(name = "buildifier_prebuilt", version = "6.4.0")
