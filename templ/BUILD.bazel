@@ -1,0 +1,5 @@
+alias(
+    name = "templ",
+    actual = "@com_github_a_h_templ//cmd/templ",
+    visibility = ["//visibility:public"],
+)
