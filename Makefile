@@ -22,16 +22,26 @@ help:
 	@echo "Targets:"
 	@echo "  all        Build and test the project (default)"
 	@echo "  buildifier Run buildifier to format Bazel files"
+	@echo "  gazelle    Run Gazelle to update Bazel build files"
 	@echo "  test       Run tests"
+	@echo "  tidy       Run bazel mod tidy to update dependencies"
 	@echo "  clean      Clean the project"
 
 .PHONY: buildifier
 buildifier:
 	$(BAZEL) run //:buildifier
 
+.PHONY: gazelle
+gazelle:
+	$(BAZEL) run //:gazelle
+
 .PHONY: test
 test: buildifier
 	$(BAZEL) test //...
+
+.PHONY: tidy
+tidy:
+	$(BAZEL) mod tidy
 
 .PHONY: clean
 clean:

@@ -1,4 +1,8 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier_test")
+load("@gazelle//:def.bzl", "gazelle")
+load("@rules_go//go:def.bzl", "go_library")
+
+gazelle(name = "gazelle")
 
 buildifier_test(
     name = "buildifier",
@@ -7,4 +11,28 @@ buildifier_test(
         "**/*.bzl",
     ]),
     lint_mode = "warn",
+)
+
+go_library(
+    name = "templ_lib",
+    srcs = ["tools.go"],
+    importpath = "github.com/StatusCakeDev/templ",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_a_h_htmlformat//:htmlformat",
+        "@com_github_a_h_parse//:parse",
+        "@com_github_a_h_pathvars//:pathvars",
+        "@com_github_a_h_protocol//:protocol",
+        "@com_github_andybalholm_brotli//:brotli",
+        "@com_github_cenkalti_backoff_v4//:backoff",
+        "@com_github_cli_browser//:browser",
+        "@com_github_fatih_color//:color",
+        "@com_github_fsnotify_fsnotify//:fsnotify",
+        "@com_github_natefinch_atomic//:atomic",
+        "@com_github_puerkitobio_goquery//:goquery",
+        "@com_github_rs_cors//:cors",
+        "@dev_lsp_go_jsonrpc2//:jsonrpc2",
+        "@dev_lsp_go_uri//:uri",
+        "@org_uber_go_zap//:zap",
+    ],
 )
